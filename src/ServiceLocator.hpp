@@ -14,7 +14,7 @@ public:
     void SetInstance(Args... args) {
         const size_t hash = typeid(T).hash_code();
         std::shared_ptr<T> instance = std::make_shared<T>(args...);
-        mInstances.try_emplace(hash, std::shared_ptr<void>(instance));
+        mInstances.emplace(hash, std::shared_ptr<void>(instance));
     }
 
     template<typename T>
