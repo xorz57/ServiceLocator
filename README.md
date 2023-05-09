@@ -1,6 +1,6 @@
 # ServiceLocator
 
-Service Locator written in C++20
+Service Locator written in C++11
 
 ## How to Build using [CMake](https://cmake.org/)
 
