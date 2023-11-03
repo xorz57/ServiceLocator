@@ -7,12 +7,7 @@
 class ServiceLocator {
 public:
     ServiceLocator() = default;
-    ServiceLocator(const ServiceLocator &other) = delete;
-    ServiceLocator(ServiceLocator &&other) = delete;
     ~ServiceLocator() = default;
-
-    ServiceLocator &operator=(const ServiceLocator &other) = delete;
-    ServiceLocator &operator=(ServiceLocator &&other) = delete;
 
     template<typename T, typename... Args>
     void SetInstance(Args... args) {

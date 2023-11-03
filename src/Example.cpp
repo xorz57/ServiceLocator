@@ -10,6 +10,12 @@ public:
     ~A() {
         std::cout << __func__ << std::endl;
     }
+
+    A(const A &other) = delete;
+    A(A &&other) = delete;
+
+    A &operator=(const A &other) = delete;
+    A &operator=(A &&other) = delete;
 };
 
 class B {
@@ -20,6 +26,12 @@ public:
     ~B() {
         std::cout << __func__ << std::endl;
     }
+
+    B(const B &other) = delete;
+    B(B &&other) = delete;
+
+    B &operator=(const B &other) = delete;
+    B &operator=(B &&other) = delete;
 };
 
 int main() {
