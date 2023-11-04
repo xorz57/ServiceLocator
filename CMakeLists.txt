@@ -1,8 +1,12 @@
-cmake_minimum_required(VERSION 3.24)
+cmake_minimum_required(VERSION 3.26)
 project(ServiceLocator)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-add_executable(${PROJECT_NAME} src/Example.cpp)
+add_library(ServiceLocator INTERFACE)
+target_include_directories(ServiceLocator INTERFACE ${CMAKE_SOURCE_DIR}/include)
+
+add_executable(Example examples/Example.cpp)
+target_link_libraries(Example PRIVATE ServiceLocator)

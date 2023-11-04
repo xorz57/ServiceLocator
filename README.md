@@ -21,6 +21,81 @@
     </a>
 </div>
 
+## Example
+
+```cpp
+#include "ServiceLocator/ServiceLocator.hpp"
+
+#include <iostream>
+
+class A {
+public:
+    A() {
+        std::cout << __func__ << std::endl;
+    }
+    ~A() {
+        std::cout << __func__ << std::endl;
+    }
+
+    A(const A &other) = delete;
+    A(A &&other) = delete;
+
+    A &operator=(const A &other) = delete;
+    A &operator=(A &&other) = delete;
+};
+
+class B {
+public:
+    B() {
+        std::cout << __func__ << std::endl;
+    }
+    ~B() {
+        std::cout << __func__ << std::endl;
+    }
+
+    B(const B &other) = delete;
+    B(B &&other) = delete;
+
+    B &operator=(const B &other) = delete;
+    B &operator=(B &&other) = delete;
+};
+
+int main() {
+    ServiceLocator serviceLocator;
+
+    serviceLocator.SetInstance<A>();
+    serviceLocator.SetInstance<B>();
+
+    std::cout << serviceLocator.GetInstance<A>() << std::endl;
+    std::cout << serviceLocator.GetInstance<B>() << std::endl;
+
+    std::cout << serviceLocator.GetInstance<A>() << std::endl;
+    std::cout << serviceLocator.GetInstance<B>() << std::endl;
+
+    serviceLocator.Clear();
+
+    std::cout << serviceLocator.GetInstance<A>() << std::endl;
+    std::cout << serviceLocator.GetInstance<B>() << std::endl;
+
+    return 0;
+}
+```
+
+## Output
+
+```console
+A
+B
+00000241A0CA9850
+00000241A0CA9550
+00000241A0CA9850
+00000241A0CA9550
+~B
+~A
+0000000000000000
+0000000000000000
+```
+
 ## How to Build using CMake
 
 ```bash
