@@ -43,21 +43,21 @@ public:
 };
 
 int main() {
-    ServiceLocator serviceLocator;
+    service_locator_t sl;
 
-    serviceLocator.SetInstance<A>();
-    serviceLocator.SetInstance<B>();
+    sl.set_instance<A>();
+    sl.set_instance<B>();
 
-    std::cout << serviceLocator.GetInstance<A>() << std::endl;
-    std::cout << serviceLocator.GetInstance<B>() << std::endl;
+    std::cout << sl.get_instance<A>() << std::endl;
+    std::cout << sl.get_instance<B>() << std::endl;
 
-    std::cout << serviceLocator.GetInstance<A>() << std::endl;
-    std::cout << serviceLocator.GetInstance<B>() << std::endl;
+    std::cout << sl.get_instance<A>() << std::endl;
+    std::cout << sl.get_instance<B>() << std::endl;
 
-    serviceLocator.Clear();
+    sl.clear();
 
-    std::cout << serviceLocator.GetInstance<A>() << std::endl;
-    std::cout << serviceLocator.GetInstance<B>() << std::endl;
+    std::cout << sl.get_instance<A>() << std::endl;
+    std::cout << sl.get_instance<B>() << std::endl;
 
     return 0;
 }

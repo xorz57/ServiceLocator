@@ -28,32 +28,32 @@
 #include <unordered_map>
 #include <memory>
 
-class ServiceLocator {
+class service_locator_t {
 public:
-    ServiceLocator() = default;
-    ~ServiceLocator() = default;
+    service_locator_t() = default;
+    ~service_locator_t() = default;
 
     template<typename T, typename... Args>
-    void SetInstance(Args... args) {
+    void set_instance(Args... args) {
         const size_t hash = typeid(T).hash_code();
         std::shared_ptr<T> instance = std::make_shared<T>(args...);
-        mInstances.emplace(hash, std::shared_ptr<void>(instance));
+        m_instances.emplace(hash, std::shared_ptr<void>(instance));
     }
 
     template<typename T>
-    std::shared_ptr<T> GetInstance() {
+    std::shared_ptr<T> get_instance() {
         const size_t hash = typeid(T).hash_code();
-        auto it = mInstances.find(hash);
-        if (it != mInstances.end()) {
-            return std::static_pointer_cast<T>(mInstances.at(hash));
+        auto it = m_instances.find(hash);
+        if (it != m_instances.end()) {
+            return std::static_pointer_cast<T>(m_instances.at(hash));
         }
         return nullptr;
     }
 
-    void Clear() {
-        mInstances.clear();
+    void clear() {
+        m_instances.clear();
     }
 
 private:
-    std::unordered_map<size_t, std::shared_ptr<void>> mInstances;
+    std::unordered_map<size_t, std::shared_ptr<void>> m_instances;
 };
